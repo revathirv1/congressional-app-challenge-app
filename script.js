@@ -9,7 +9,7 @@ function generateQR() {
   document.getElementById("qrcode").innerHTML = "";
   
   new QRCode(document.getElementById("qrcode"), {
-    text: `http://revathirv.github.io/x/?Qrdata=${encodeURIComponent(text)}`,
+    text: `https://revathirv1.github.io/x/?Qrdata=${encodeURIComponent(text)}`,
     width: 200,
     height: 200
   });
