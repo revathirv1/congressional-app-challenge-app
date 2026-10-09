@@ -3,43 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Welcome to FaceCard</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cloudflare.com"></script>
 </head>
-
-<body style="font-family: system-ui, -apple-system, sans-serif; text-align: center; margin-top: 50px; background-color: #007AFF;"></body>
+<body style="font-family: system-ui, -apple-system, sans-serif; text-align: center; margin-top: 50px; background-color: #007AFF;">
 <center>
-<h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 400; color:white;">
-  Welcome to FaceCard
-</h1>
-<input type="text" id="text" placeholder="enter Medical Info">
-
-
-
-<button onclick="generateQR()">keep info to </button>
-<div id="qrcode"></div>
-
-
-<p id= "qrdata" style="margin-top: 250px;color:white;"> 
   
-waiting for QR Scan
-</p>
+  <h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 400; color:white;">
+    Welcome to FaceCard
+  </h1>
+  
+  <input type="text" id="text" placeholder="enter Medical Info">
+  <button onclick="generateQR()">keep info to </button>
+  <div id="qrcode"></div>
 
+  
+  <p id="qrData" style="margin-top: 250px; color:white; font-size: 22px;"> 
+    waiting for QR Scan
+  </p>
 
-
- 
   <script src="script.js"></script> 
+  
   <script>
-  
-  const scannedText = new URLSearchParams(window.location.search).get('Qrdata');
-  
-  if (scannedText) {
-    document.getElementById('qrData').innerText = decodeURIComponent(scannedText);
-  }
-</script>
-
+    
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const scannedText = urlParams.get('Qrdata');
+      
+      if (scannedText) {
+        document.getElementById('qrData').innerText = decodeURIComponent(scannedText);
+      }
+    };
+  </script>
 
 </center>
 </body>
-
+</html>
 
 
