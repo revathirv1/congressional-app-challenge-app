@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Welcome to FaceCard</title>
-  <script src="https://cloudflare.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
+
 <body style="font-family: system-ui, -apple-system, sans-serif; text-align: center; margin-top: 50px; background-color: #007AFF;">
 <center>
   
@@ -14,29 +15,51 @@
   
   <input type="text" id="text" placeholder="enter Medical Info">
   <button onclick="generateQR()">keep info to </button>
-  <div id="qrcode"></div>
-
   
-  <p id="qrData" style="margin-top: 250px; color:white; font-size: 22px;"> 
+  
+  <div id="qrcode" style="margin-top:20px;"></div>
+
+ 
+  <p id="qrData" style="margin-top: 100px; color:white; font-size: 22px;"> 
     waiting for QR Scan
   </p>
 
-  <script src="script.js"></script> 
-  
   <script>
-    
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const scannedText = urlParams.get('Qrdata');
+  
+    function generateQR() {
+      const text = document.getElementById("text").value;
+
+      if (!text) {
+        alert("Please enter text or URL or both");
+        return;
+      }
+
+      document.getElementById("qrcode").innerHTML = "";
       
-      if (scannedText) {
-        document.getElementById('qrData').innerText = decodeURIComponent(scannedText);
+      new QRCode(document.getElementById("qrcode"), {
+        text: `https://revathirv1.github.io/x/${encodeURIComponent(text)}`,
+        width: 200,
+        height: 200
+      });
+    }
+
+   
+    window.onload = function() {
+      const targetParams = new URLSearchParams(window.location.search);
+      const textFromScan = targetParams.get('Qrdata');
+      
+      if (textFromScan) {
+        document.getElementById('qrData').innerText = decodeURIComponent(textFromScan);
       }
     };
   </script>
 
+
+  <p style="color: white; margin-top: 150px; font-size: 14px; opacity: 0.8; max-width: 500px; line-height: 1.5; margin-left: auto; margin-right: auto;">
+    FaceCard is a serverless, end-to-end encrypted PWA that uses qr codes to store important medical information to help quickly remedy medical emergencies
+  </p>
+
 </center>
 </body>
 </html>
-
 
