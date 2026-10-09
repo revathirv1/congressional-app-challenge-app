@@ -19,17 +19,18 @@
 <div id="qrcode"></div>
 
 
-<p style="margin-top: 250px;color:white;"> 
+<p id= "qrdata" style="margin-top: 250px;color:white;"> 
   
 waiting for QR Scan
 </p>
+
 
 
  
   <script src="script.js"></script> 
   <script>
     const Urlparams= new URLSearchParams(window.location.search)
-    const scannedText = urlParams.get('Qrdata');
+    const scannedText = Urlparams.get('Qrdata');
     if (scannedText) {
       document.getElementById('qrData').innerText = decodeURIComponent(scannedText);
     }
