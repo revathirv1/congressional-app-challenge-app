@@ -12,6 +12,9 @@
   Welcome to FaceCard
 </h1>
 <input type="text" id="text" placeholder="enter Medical Info">
+
+
+
 <button onclick="generateQR()">keep info to </button>
 <div id="qrcode"></div>
 
@@ -25,8 +28,13 @@ waiting for QR Scan
  
   <script src="script.js"></script> 
   <script>
-    constUrlparams= new URLSearchParams(window.location,search)
-    
+    const Urlparams= new URLSearchParams(window.location.search)
+    const scannedText = urlParams.get('Qrdata');
+    if (scannedText) {
+      document.getElementById('qrData').innerText = decodeURIComponent(scannedText);
+    }
+
+
   </script>
 
 </center>
